@@ -19,8 +19,10 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "ubuntu" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = var.instance_type
+  vpc_security_group_ids = ["sg-052192164a56c2636"]
+  subnet_id              = "subnet-055d22b769456f187"
 
   tags = {
     Name = var.instance_name
